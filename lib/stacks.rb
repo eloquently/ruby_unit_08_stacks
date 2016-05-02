@@ -3,7 +3,7 @@
 # instance methods. #pop removes the top (most recently added) element of the
 # stack and #push adds a new item to the top of the stack. #push returns
 # self so that you can chain multiple pushes together. #peek returns the top
-# element of the stack without removing it from the stack size returns the
+# element of the stack without removing it from the stack. #count returns the
 # number of elements in the stack.
 
 class Stack
@@ -24,8 +24,8 @@ class Stack
         return @arr[-1]
     end
 
-    def size
-        return @arr.size
+    def count
+        return @arr.count
     end
 end
 
@@ -34,6 +34,12 @@ end
 # palindrome is a string that reads the same forward and backward. Return
 # true if the string is a palindrome otherwise it should return false.
 def is_palindrome?(str)
+    st = Stack.new
+    chars = str.split('')
+    chars.each { |c| st.push(c) }
+    new_chars = []
+    chars.count.times { new_chars << st.pop }
+    return chars == new_chars
 end
 
 
@@ -44,6 +50,22 @@ end
 # balanced? {{}()[]}{()} # => true
 # balanced? {}{}[}] #=> false
 def balanced?(str)
+    st = Stack.new
+    str.split('').each do |c|
+        if c == "{" or c == "(" or c == "["
+            st.push(c)
+        else
+            o = st.pop
+            unless (o == "{" and c == "}") or (o == "(" and c == ")") or (o == "[" and c == "]")
+                return false
+            end
+        end
+    end
+    if st.count == 0
+        return true
+    else
+        return false
+    end
 end
 
 
@@ -61,7 +83,28 @@ end
 # override any of Stack's methods. Ask Eric for a hint if you get stuck before
 # searching online.
 class StackWithMin < Stack
+    def initialize
+        super
+        @min_stack = Stack.new
+    end
+
+    def push(new_element)
+        super(new_element)
+        if !@min_stack.peek.nil? and @min_stack.peek < new_element
+            @min_stack.push(@min_stack.peek)
+        else
+            @min_stack.push(new_element)
+        end
+    end
+
+    def pop
+        ret = super
+        @min_stack.pop
+        return ret
+    end
+
     def min_value
+        @min_stack.peek
     end
 end
 
@@ -69,7 +112,21 @@ end
 # may create extra functions as needed. This method will take a stack as a
 # parameter and should return a stack.
 def sort_stack(stack)
+    if stack.count > 0
+        top = stack.pop
+        sort_stack(stack)
+        insert_in_order(top, stack)
+    end
     return stack
 end
 
+def insert_in_order(top, stack)
+    if stack.count == 0 or top > stack.peek
+        stack.push(top)
+    else
+        next_top = stack.pop
+        insert_in_order(top, stack)
+        stack.push(next_top)
+    end
+end
 
