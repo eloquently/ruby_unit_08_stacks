@@ -50,9 +50,9 @@ describe "stack questions" do
 
     describe "rpn_calculator" do
         it 'returns correct value' do
-            expect(rpn_calculator("5 1 2 + 4 × + 3 −")).to eq(14)
+            expect(rpn_calculator("5 1 2 + 4 * + 3 -")).to eq(14)
             expect(rpn_calculator("4 2 5 * + 1 3 2 * + /")).to eq(2)
-            expect(rpn_calculator("9 5 3 + 2 4 ^ - +")).to eq(11)
+            expect(rpn_calculator("9 5 3 + 2 4 + - +")).to eq(11)
         end
     end
 
