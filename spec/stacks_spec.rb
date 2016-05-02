@@ -56,14 +56,6 @@ describe "stack questions" do
         end
     end
 
-    describe "sort_stack" do
-        it 'returns sorted stack' do
-            expect(is_sorted?(sort_stack(Stack.new.push(3).push(5).push(8).push(10).push(2).push(15)))).to eq(true)
-            expect(is_sorted?(sort_stack(Stack.new.push(4).push(3).push(2).push(1)))).to eq(true)
-            expect(is_sorted?(sort_stack(Stack.new.push(1).push(3).push(7).push(2)))).to eq(true)
-        end
-    end
-
     describe "min_stack" do
         it 'tracks min' do
             s = StackWithMin.new
@@ -85,6 +77,14 @@ describe "stack questions" do
             expect(s.min_value).to eq(0)
             s.pop
             expect(s.min_value).to eq(2)
+        end
+    end
+
+    describe "sort_stack" do
+        it 'returns sorted stack' do
+            expect(is_sorted?(sort_stack(Stack.new.push(3).push(5).push(8).push(10).push(2).push(15)))).to eq(true)
+            expect(is_sorted?(sort_stack(Stack.new.push(4).push(3).push(2).push(1)))).to eq(true)
+            expect(is_sorted?(sort_stack(Stack.new.push(1).push(3).push(7).push(2)))).to eq(true)
         end
     end
 end

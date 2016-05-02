@@ -55,22 +55,21 @@ end
 def rpn_calculator(str)
 end
 
-### Challenge questions ###
-
-# Sort a stack using recursion. Your solution should not use any loops. You
-# may create extra functions as needed. This method will take a stack as a
-# parameter and should return a stack.
-def sort_stack(stack)
-end
-
-
 # Create a new class that has the same behavior as a Stack but has an extra
 # instance method that will return the value of the smallest value in the stack.
 # This class inherits from Stack, but can have extra instance variables. You can
 # override any of Stack's methods. Ask Eric for a hint if you get stuck before
 # searching online.
-
 class StackWithMin < Stack
     def min_value
     end
 end
+
+# Sort a stack using recursion. Your solution should not use any loops. You
+# may create extra functions as needed. This method will take a stack as a
+# parameter and should return a stack.
+def sort_stack(stack)
+    return stack
+end
+
+
