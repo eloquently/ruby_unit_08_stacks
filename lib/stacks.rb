@@ -75,6 +75,19 @@ end
 # or "+", "-", "/", "*". Entries will be separated by spaces. The method should
 # return a value.
 def rpn_calculator(str)
+    elements = str.split(' ')
+    st = Stack.new
+    elements.count.times do |i|
+        n = elements[i]
+        if n == "+" or n == "-" or n == "/" or n == "*"
+            val_1 = st.pop
+            val_2 = st.pop
+            st.push(val_2.send(n, val_1))
+        else
+            st.push(n.to_i)
+        end
+    end
+    return st.pop
 end
 
 # Create a new class that has the same behavior as a Stack but has an extra
