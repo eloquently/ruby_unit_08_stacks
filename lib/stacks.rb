@@ -56,9 +56,9 @@ def balanced?(str)
             st.push(c)
         else
             o = st.pop
-            unless (o == "{" and c == "}") or (o == "(" and c == ")") or (o == "[" and c == "]")
-                return false
-            end
+            return false unless (o == "{" and c == "}") or
+                                (o == "(" and c == ")") or
+                                (o == "[" and c == "]")
         end
     end
     if st.count == 0
